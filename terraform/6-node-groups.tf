@@ -16,18 +16,18 @@ resource "azurerm_kubernetes_cluster_node_pool" "spot" {
     node_labels = {
         role                                    = "spot"
         "kubernetes.azure.com/scalesetpriority" = "spot"
-  }
+    }
 
-  node_taints = [
-      "spot:NoSchedule",
-      "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
-  ]
+    node_taints = [
+        "spot:NoSchedule",
+        "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
+    ]
 
-  tags = {
-      env = local.env
-  }
+    tags = {
+        env = local.env
+    }
 
-  lifecycle {
-      ignore_changes = [node_count]
-  }
+    lifecycle {
+        ignore_changes = [node_count]
+    }
 }
