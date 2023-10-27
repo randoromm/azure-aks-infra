@@ -1,3 +1,8 @@
+/*
+    Specific node groups that are tailored for specific work load.
+    e.g. GPU, compute or memory optimized
+    Spot is a cheap learning node, that can be terminated by Azure at any time.
+*/
 resource "azurerm_kubernetes_cluster_node_pool" "spot" {
     name                  = "spot"
     kubernetes_cluster_id = azurerm_kubernetes_cluster.this.id
@@ -18,6 +23,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "spot" {
         "kubernetes.azure.com/scalesetpriority" = "spot"
     }
 
+
+    # Prevent any pods from being scheduled unless they explicitly tolerate those taints
     node_taints = [
         "spot:NoSchedule",
         "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
