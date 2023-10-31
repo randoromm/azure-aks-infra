@@ -8,7 +8,7 @@ az account list
 az account set --subscription <id>
 terraform init
 terraform apply
-az aks get-credentials --resource-group tutorial --name dev-demo
+az aks get-credentials --resource-group russo-rg --name dev-russo-aks
 ```
 
 ## Create Public and Private load balancers
